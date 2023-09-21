@@ -35,30 +35,50 @@ function buildChart(x) {
         let array1 = samples.filter(sampleObject => sampleObject.id == x);
         let result = array1[0];
         console.log(result);
-        let otu_ids = samples.otu_ids;
-        let otu_labels = samples.otu_labels;
-        let sampleValues = samples.sample_values;
+        let otu_ids = result.otu_ids;
+        let otu_labels = result.otu_labels;
+        let sampleValues = result.sample_values;
+        console.log(sampleValues);
         let sortedSampleValues = sampleValues.sort((a, b) => b.sampleValues - a.sampleValues);
         let slicedSampleValues = sortedSampleValues.slice(0, 10);
         function buildChart () {
             let trace1 = {
-                x: otu_ids,
-                y: slicedSampleValues,
+                x: slicedSampleValues,
+                y: otu_ids,
                 text: otu_labels,
                 type: 'bar',
                 orientation: 'h'
             };
             let data = [trace1];
-            Plotly.newPlot("plot", data);
+            let layout = {
+                title: 'Sample Values Bar Chart',
+                margin: {
+                    l: 100,
+                    r: -50,
+                    t: 50,
+                    b: 100
+                }
+            }
+            Plotly.newPlot("bar", data, layout);
 
             let trace2 = {
                 x: otu_ids,
                 y: sampleValues,
                 text: otu_labels,
                 type: 'bubble',
+                mode: 'markers'
             };
             let data2 = [trace2];
-            Plotly.newPlot("plot", data2);
+            let layout2 = {
+                title: 'Sample Values Bubble Chart',
+                margin: {
+                    l: 100,
+                    r: -10,
+                    t: 100,
+                    b: 100
+                }
+            }
+            Plotly.newPlot("bubble", data2, layout2);
         }    
         buildChart();
 });
