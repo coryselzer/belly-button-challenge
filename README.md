@@ -9,3 +9,4 @@ This is the belly-button challenge. This challenge aims to build an interactive 
 - We create functions to display the metadata, OTU IDs, sample values and OTU labels on both a variable side profile as well as two plots.
 - We also format the plots to display the plots in a visually appealing manner with proper labelling techniques.
 - Finally, we deploy the app to Github Pages.
+    - Pages Link: https://coryselzer.github.io/belly-button-challenge/
